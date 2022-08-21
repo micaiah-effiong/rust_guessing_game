@@ -1,4 +1,6 @@
 use rand::Rng;
+mod utils;
+use utils::{prompt, clear};
 
 fn main() {
     let game_values: GameValues = game_init();
@@ -67,22 +69,6 @@ fn game_init() -> GameValues {
     };
 
     return GameValues::new(guess_value, starting_value, ending_value);
-}
-
-fn prompt(msg: &str) -> String {
-    println!("{msg}");
-
-    let mut input: String = String::new();
-    match std::io::stdin().read_line(&mut input) {
-        Ok(num) => num,
-        Err(_) => panic!("Could not read input"),
-    };
-
-    return input;
-}
-
-fn clear() {
-    print!("\x1B[2J\x1B[1;1H");
 }
 
 struct GameValues {
